@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>ALBUMS</h1>
+    <p class="important">
+      Welcome to {{username_request}}'s album!
+    </p>
+    {% if edit %}
+    	<p>This is edit page of {{username_request}}'s album.</p>
+        <table id = "t01">
+		<tr>
+			<th>Album</th>
+			<th>Albumid</th>
+			<th>Created</th>
+			<th>Last Updated</th>
+			<td>Edit</td>
+			<td>Delete</td>
+		</tr>
+		{% for album in user_albums_own %}
+		<tr>
+			<td><a id="album_{{album.albumid}}_link" href="{{ url_for('album.album_route',albumid=album.albumid) }}">{{album.title}}</a></td>
+
+			<td>{{album.albumid}}</td>
+
+			<td>{{album.created}}</td>
+
+			<td>{{album.lastupdated}}</td>
+
+			<td>
+			<a id = "album_edit_{{album.albumid}}_link" href="{{url_for('album.album_edit_route',albumid=album.albumid)}}">Edit</a>
+			</td>
+
+			<td>
+			<form action = "{{url_for('albums.albums_edit_route', username = username_request)}}" method = "POST">
+			<input type="submit" id="delete_album_{{album.albumid}}" name="op" value="delete">
+			<input type="hidden" name="albumid" value="{{album.albumid}}">
+			
+			</form>
+			</td>
+		  </tr>
+		  
+		{% endfor %}
+		</table>
+		
+		<table id = "t01">
+		<form action="{{url_for('albums.albums_edit_route', username = username_request)}}" method="POST">
+			<input type="hidden" name="username" value="{{username_request}}">
+			<tr>
+				<td>New: <input type="text" id="album_add_name" name="title"></td>
+				<td><input type="submit" id="album_add_submit" name="op" value="add"></td>
+			</tr>
+		</form>
+		</table>
+		
+		
+
+    {% else %}
+    <table id = "t01">
+		<tr>
+			<th>Album</th>
+			<th>Albumid</th>
+			<th>Created</th>
+			<th>Last Updated</th>
+		</tr>
+		{% if is_username_parameter %}
+		{% for album in user_public_albums %}
+			<tr>
+			<td><a id="album_{{album.albumid}}_link" href="{{url_for('album.album_route',albumid = album.albumid)}}">{{album.title}}</a></td>
+			<td>{{album.albumid}}</td>
+			<td>{{album.created}}</td>
+			<td>{{album.lastupdated}}</td>
+		  </tr>
+		{% endfor %}
+
+		{% else %}
+
+		{% for album in user_albums_own %}
+			<tr>
+			<td><a id="album_{{album.albumid}}_link" href="{{url_for('album.album_route',albumid = album.albumid)}}">{{album.title}}</a></td>
+			<td>{{album.albumid}}</td>
+			<td>{{album.created}}</td>
+			<td>{{album.lastupdated}}</td>
+		  </tr>
+		{% endfor %}
+
+		
+		<p>If you want to edit the album, click <a id="user_albums_edit_{{username_request}}" href="{{ url_for('albums.albums_edit_route')}}">here</a>!</p>
+
+		{% endif %}
+	</table>
+
+	{% endif %}
+
+
+
+{% endblock %}

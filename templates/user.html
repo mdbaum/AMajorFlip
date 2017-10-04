@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title%}User Page{% endblock %}
+
+{% block content %}
+
+<h2>This page is for user creation.</h2>
+
+<form id="new_user">
+
+    <p>Username: <input type="text" name="username" id="new_username_input"></p>
+
+	<p>Firstname: <input type="text" name="firstname" id="new_firstname_input"></p>
+
+	<p>Lastname: <input type="text" name="lastname" id="new_lastname_input"></p>
+
+	<p>Email: <input type="text" name="email" id="new_email_input"></p>
+
+	<p>Password: <input type="password" name="password1" id="new_password1_input"></p>
+	
+	<p>Repeat your password: <input type="password" name="password2" id="new_password2_input"></p>
+
+	<input type="submit" name="submit" id="new_submit">
+
+</form>
+
+<div id="errors">
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script type="text/javascript" src="/static/js/user.js"></script>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>ALBUM</h1>
+    <h3 class="important">
+      Welcome to {{username}}'s album {{albumtitle}}!
+    </h3>
+    {% if edit %}
+		<p>Here you can change the album access permissions</p>
+		<!-- Use the referenced format -->
+		<form action="{{url_for('album.album_edit_route', albumid = albumid)}}" method="POST">
+          <input type="radio" name="access" value="public" id="album_edit_public_radio">Public<br><br>
+          <input type="radio" name="access" value="private" id="album_edit_private_radio">Private<br><br>
+          <input type="hidden" name="op" value="access">
+          <input type="hidden" name="albumid" value="{{albumid}}">
+          <input type="submit" value="Submit" id="album_edit_access_submit">
+        </form>
+		<br><br>
+		{% if is_album_private %}
+		<table id = "t01">
+		<tr><th>Username</th><th>Update Access</th></tr>
+		{% for user in users_given_permission %}
+		<tr>
+			<td>{{user['username']}}</td>
+			<td>
+				<form action="{{url_for('album.album_edit_route', albumid = albumid)}}" method="POST">
+					<input type="hidden" name="op" value="revoke">
+	                <input type="hidden" name="username" value="{{user['username']}}">
+	                <input type="hidden" name="albumid" value="{{albumid}}">
+	                <input type="submit" value="Revoke" id="album_edit_revoke_{{user['username']}}">
+              	</form>
+			</td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<form action="{{url_for('album.album_edit_route', albumid = albumid)}}" method="POST">
+            <td>
+              New: <input type="text" name="username" id="album_edit_grant_input">
+            </td>
+            <td>
+              <input type="hidden" name="op" value="grant">
+              <input type="hidden" name="albumid" value="{{albumid}}">
+              <input type="submit" value="Add" id="album_edit_grant_submit">
+            </td>
+            </form>
+		</tr>
+
+		</table>
+		<br><br>
+		{% endif %}
+
+        <p>Below are picture list of album {{albumtitle}}</p>
+        <table>
+        <tr>
+        	<th>Picture</th>
+        	<th>Delete</th>
+        </tr>
+		{% for picname in picsname %}
+		<tr>
+			<td>
+			<a id = "pic_{{picname['picid']}}_link" href="{{url_for('pic.pic_route', picid = picname['picid'])}}">
+			<img src = "/static/images/{{picname['picid']}}.{{picname['format']}}" alt = "{{username}}'s picture" style="width:120px; height:120px;">
+			</a>
+			</td>
+			
+			<!-- Delete operation -->
+			<td>
+			<form action = "{{url_for('album.album_edit_route', albumid = albumid)}}" method = "POST">
+			<input type="submit" id="delete_pic_{{picname['picid']}}" name="op" value="delete">
+			<input type="hidden" name="albumid" value="{{albumid}}">
+			<input type="hidden" name="picid" value="{{picname['picid']}}">
+			</form>
+			</td>
+		</tr>
+		{% endfor %}
+		</table>
+
+		<br>
+		<br>
+
+		<!-- Add operation -->
+		<p>
+			<form action="{{url_for('album.album_edit_route', albumid = albumid)}}" enctype='multipart/form-data' method="POST">
+			<input type="file" name="file" id="file_input">
+			<input type="submit" id="file_submit" name="op" value="add">
+			<input type="hidden" name="albumid" value="{{albumid}}">
+		</form>
+		</p>
+
+
+	{% else %}
+		<p>Below are picture list of album {{albumtitle}}</p>
+		<table id = "t01">
+		<tr>
+			<th>Caption</th>
+			<th>Picture</th>
+			<th>Date</th>
+		</tr>
+
+		{% for picname in picsname %}
+			<tr>
+			<td>
+				{{picname['caption']}}
+			</td>
+
+			<td>
+			<a id = "pic_{{picname['picid']}}_link" href="{{url_for('pic.pic_route', picid = picname['picid'])}}">
+			<img src = "/static/images/{{picname['picid']}}.{{picname['format']}}" alt = "{{username}}'s picture" style="width:120px; height:120px;">
+			</a>
+			</td>
+
+			<td>
+				{{picname['date']}}
+			</td>
+
+			</tr>
+		{% endfor %}
+
+		</table>
+
+
+    {% endif %}
+{% endblock %}

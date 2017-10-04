@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>PIC</h1>
+    <p class="important">
+      Welcome!
+    </p>
+    <p id = 'pic_{{ picid }}_caption'>Caption: {{this_pic_caption}}</p>
+    <p>{% if is_edit %}<form method = 'POST'>
+    	<input type = 'hidden' name = 'op' value = 'caption'>
+    	<input type="hidden" name="picid" value="{{ picid }}">
+    	New caption: <input type = 'text' name = 'caption' id = 'pic_caption_input'>
+    	<input type="submit" name="submit" value = "update" id = 'pic_caption_submit'>
+    </form>{% endif %}</p>
+	<img src = "/static/images/{{picid}}.{{this_pic_format}}">
+	
+
+	<div class = "center">
+	<p>
+	{% if isValid_next_pic %}
+	<a id = "next_pic" href="{{url_for('pic.pic_route', picid = next_picid)}}">
+	NEXT PIC
+	</a>
+	<br>
+	<br>
+
+	{% endif %}
+
+
+	{% if isValid_prev_pic %}
+	<a id = "prev_pic" href="{{url_for('pic.pic_route', picid = prev_picid)}}">
+	PREV PIC
+	</a>
+
+	{% endif %}
+	
+	</p>
+	<br>
+	<br>
+	<br>
+	</div>
+	<p>
+		If you want to go back to the album page, click <a id="parent_album" href="{{url_for('album.album_route', albumid = albumid)}}">here</a>!
+		</p>
+
+{% endblock %}

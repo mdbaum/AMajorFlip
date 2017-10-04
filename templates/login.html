@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title%}Login Page{% endblock %}
+
+{% block content %}
+<h2>Log in to our system</h2>
+<br><br>
+<form id="login_form">
+	<p>Username: <input type="text" name="username" id="login_username_input"></p>
+	<p>Password: <input type="password" name="password" id="login_password_input"></p>
+	<p><input type="submit" name="submit" value="Log In" id="login_submit"></p>
+</form>
+<div id="errors">
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+
+{% endblock %}

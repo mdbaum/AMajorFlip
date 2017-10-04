@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title%}User Page{% endblock %}
+
+{% block content %}
+
+<h2>This page is for editing account.</h2>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script type="text/javascript" src="/static/js/user_edit.js"></script>
+
+<form id="update_user">
+
+<p>New Firstname: <input type="text" name="firstname" id="update_firstname_input"></p>
+
+<p>New Lastname: <input type="text" name="lastname" id="update_lastname_input"></p>
+
+<p>New Email: <input type="text" name="email" id="update_email_input"></p>
+
+<p>New Password: <input type="password" name="password1" id="update_password1_input"></p>
+
+<p>Repeat your new password: <input type="password" name="password2" id="update_password2_input"></p>
+
+<input type="submit" name="submit" id="update_submit">
+
+</form>
+
+<div id="errors">
+</div>
+
+
+{% endblock %}
