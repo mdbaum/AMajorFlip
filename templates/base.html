@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/static/css/style.css" />
-    <title>EECS485</title>
+    <title>EECS498</title>
 
     <!--Define meta element-->
   	<meta charset="UTF-8">
-  	<meta name="description" content="Umich EECS485 W17 P1">
-  	<meta name="keywords" content="Umich,EECS485,HTML,CSS,JavaScript">
-  	<meta name="author" content="YZZ">
+  	<meta name="description" content="">
+  	<meta name="keywords" content="">
+  	<meta name="author" content="">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -36,103 +36,26 @@ table#t02 {
 <body>
 <header id = "header"r>
   <div class="center">
-	<h1>Interactive photo album</h1>
+	<h1>AMajorFlip</h1>
   </div>
 </header>	
-  
-  <div class="center">
-    <h1>Welcome my friend!</h1>
-    {% if 'username' not in session %}
-    <br>
-    <div>If you are new to the system, click <a id="home_user_create" href="{{url_for('user.user_route')}}">here</a> to join us!</div>
-    <br><br>
 
-    <div>If you have already registered, click <a id="home_login" href="{{url_for('login.login_route')}}">here</a> to log in!</div>
-    <br><br>
-    
-    {% if is_home_page %}
-    <h2>User List</h2>
-    <div>There are currently {{ users|length }} user(s).</div>
-    {% for user in users%}
-    <p><a id="user_albums_{{user.username}}" href="{{ url_for('albums.albums_route', username = user.username)}}">{{user.username}}'s album</a></p>
-    {% endfor %}
-    <br><br><br>
-
-    <h2>Public Album List</h2>
-    <div>There are currently {{public_album_list | length}} public album(s).</div>
-    {% for album in public_album_list %}
-    <p><a id="album_{{album.albumid}}_link" href="{{url_for('album.album_route', albumid=album.albumid)}}">{{album.title}}</a></p>
-    {% endfor %}
-    {% endif %}
-
-    {% else %}
-    <p>Logged in as {{session['firstname']}} {{session['lastname']}}</p>
-    <p>
-    <a href="{{url_for('main.main_route')}}" id="nav_home">Home Page</a>&nbsp;&nbsp;&nbsp;
-
-    <a href="{{url_for('user.user_edit_route')}}" id="nav_edit">Edit Account</a>&nbsp;&nbsp;&nbsp;
-
-    <a href="{{url_for('albums.albums_route')}}" id = "nav_albums">My Albums</a>&nbsp;&nbsp;&nbsp;
-
-    <form id="logout_form"><input id="nav_logout" type="submit" value = "Logout"></form>
-    
-    
-    <!--<form>
-    <input id="nav_logout" type="submit" value="Logout">&nbsp;&nbsp;&nbsp;
-    </form>-->
-    
-
-    </p>
-
-    <br><br>
-    {% if is_home_page %}
-    <h3>Here is a list of all the accessible albums for {{username}}</h3>
-    {% if public_albums_exist %}
-    <p>Below are public album(s):</p>
-    {% for album in public_albums %}
-    <p><a href="{{url_for('album.album_route', albumid = album.albumid)}}" id="album_{{album.albumid}}_link">{{album.title}}</a></p>
-    {% endfor %}
-    <br>
-    {% endif %}
-
-    {% if user_private_albums_exist %}
-    <p>Below are {{username}}'s private album(s):</p>
-    {% for album in user_private_albums %}
-    <p><a href="{{url_for('album.album_route', albumid = album.albumid)}}" id="album_{{album.albumid}}_link">{{album.title}}</a></p>
-    {% endfor %}
-    <br>
-    {% endif %}
-
-    {% if private_albums_with_access_exist %}
-    <p>Below are private album(s) which {{username}} has been granted access to by the owner:</p>
-    {% for album in private_albums_with_access %}
-    <p><a href="{{url_for('album.album_route', albumid = album.albumid)}}" id="album_{{album.albumid}}_link">{{album.title}}</a></p>
-    {% endfor %}
-    {% endif %}
-
-    {% endif %}
-
-    {% endif %}
-
-    {%block content%}
-    {%endblock%}
-
-  </div>
-
+<div>
+<br><br><br><br>
+   {% block content %}{% endblock %}
+</div>
 
 <footer id="footer">
 <div class="center">
   <div class="position: relative; bottom: 0;">
   <br><br><br><br>
   <p>University of Michigan</p>
-  <p>EECS 485 - W17 - P2</p>
-  <p>Created by Yucheng Yin, Shiyu Zhang, Zhexuan Chen(Da tui)</p>
+  <p>EECS 498-010 - F17</p>
+  <p>Created by </p>
   </div>
 </div>
 </footer>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
-  <script type="text/javascript" src="/static/js/main.js"></script>
-  <script type="text/javascript" src="/static/js/logout.js"></script>
 </body>
 
 </html>

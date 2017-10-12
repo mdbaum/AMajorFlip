@@ -1,4 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-
+	<form action="" method="post" enctype="multipart/form-data">
+		<input name="op" type="hidden" value="add_image"></input>
+		<input id="file_input" type="file" name="file" size="60">
+		<p>Upload your picture!</p>
+		<label>Label: </label>
+		<input name="label" class="form-control" placeholder="Ninth Symphony">
+		<input id="file_submit" type="submit" value="Add">
+	</form>
+	
+{% for i in pictures %}
+	<form action="" method="post" enctype="multipart/form-data">
+		<input name="op" type="hidden" value="delete_image"></input>
+		<input name="label" type="hidden" value={{ i['label'] }}></input>
+		<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
+		<img src="data:;base64,{{ i['data'] }}" style="max-width:none;" height="90"></img>
+		{{ i['label'] }}
+		<input type="submit" value="Delete">
+	</form>
+{% endfor %}
 {% endblock %}
