@@ -20,12 +20,15 @@ def script_route():
 				upload = request.files['file']
 				if upload.filename == '':
 					raise RuntimeError('Empty file is not allowed')
-				label = request.form['label']
+				sheetid = request.form['label1']
+				page = request.form['label2']
 				check_image_extension(upload)
 				image_data = upload.read()
 				image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
 				upload.close()
-				database.add_image(username, image_data, label, image_id)
+				print 'here'
+				database.add_sheetmusic(username, sheetid)
+				database.add_image(username, image_data, sheetid, page, image_id)
 			elif request.form['op'] == 'delete_image':
 				image_id = request.form['image_id']
 				# Delete the image from the database.
@@ -36,6 +39,7 @@ def script_route():
 				#print image_id
 		elif request.method == 'GET':
 			pass
+		options['sheetmusics'] = database.get_sheetmusics(username);
 		options['pictures'] = database.get_images(username)
 		return render_template('script.html', **options)
 	except Exception as e:

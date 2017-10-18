@@ -5,15 +5,40 @@
 			<input name="op" type="hidden" value="add_image"></input>
 			<input id="file_input" type="file" name="file" size="60">
 			<br>
-			<p>Upload your picture!</p>
-			<label>Label: </label>
+			<p>Upload your sheetmusic!</p>
+			<label>Sheetmusic: </label>
 		</div>
-		<input name="label" class="form-control" placeholder="Ninth Symphony" style= "margin: 10px;">
+		<input name="label1" class="form-control" placeholder="Ninth Symphony" style= "margin: 10px;">
+		<div style= "margin: 10px;">
+			<label>Page: </label>
+		</div>
+		<input name="label2" class="form-control" placeholder="1" style= "margin: 10px;">
 		<br>
 		<input id="file_submit" type="submit" value="Add" style= "margin: 10px;">
 		<br>
 	</form>
+
 	
+{% for s in sheetmusics %}
+	{% for i in pictures %}
+		{% if i['sheetmusic']==s['name'] %}
+			<form action="" method="post" enctype="multipart/form-data">
+				<input name="op" type="hidden" value="delete_image"></input>
+				<input name="label" type="hidden" value={{ i['label'] }}></input>
+				<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
+				<img src="data:;base64,{{ i['data'] }}" style="max-width:none; margin: 10px;" height="90"></img>
+				{{ i['label'] }}
+				<input type="submit" value="Delete">
+			</form>
+			<form action="" method="post" enctype="multipart/form-data">
+				<input name="op" type="hidden" value="open_image"></input>
+				<input style="margin: 10px;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
+			</form>
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+
+<!--
 {% for i in pictures %}
 	<form action="" method="post" enctype="multipart/form-data">
 		<input name="op" type="hidden" value="delete_image"></input>
@@ -29,7 +54,7 @@
 	</form>
 	
 {% endfor %}
-
+-->
     <!-- Page Content -->
     <div class="container">
 
