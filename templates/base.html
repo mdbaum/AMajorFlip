@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/static/css/style.css" />
+    <!--<link rel="stylesheet" href="/static/css/style.css" />-->
     <title>EECS498</title>
 
     <!--Define meta element-->
@@ -10,6 +10,12 @@
   	<meta name="keywords" content="">
   	<meta name="author" content="">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/full-slider.css" rel="stylesheet">
 
 <style>
 table, th, td {
@@ -32,29 +38,51 @@ table#t02 {
 
 </style>
 
-</head>
-<body>
-<header id = "header"r>
-  <div class="center">
-	<h1>AMajorFlip</h1>
-  </div>
-</header>	
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">A Major Flip</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="script.html">Upload</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
 
 <div>
 <br><br><br><br>
    {% block content %}{% endblock %}
 </div>
 
-<footer id="footer">
-<div class="center">
-  <div class="position: relative; bottom: 0;">
-  <br><br><br><br>
-  <p>University of Michigan</p>
-  <p>EECS 498-010 - F17</p>
-  <p>Created by </p>
-  </div>
-</div>
-</footer>
+<br><br><br><br><br>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; A Major Flip 2017</p>
+        <p class="m-0 text-center text-white">Created by Zhexuan Chen, Jiacheng Li, Jon Vrendenburg, and Mary Douglass Baum</p>
+        <p class="m-0 text-center text-white">EECS 498-010 – F17</p>
+      </div>
+      <!-- /.container -->
+    </footer>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
 </body>
 
