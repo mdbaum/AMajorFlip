@@ -38,24 +38,8 @@
 	{% endfor %}
 {% endfor %}
 
-<!--
-{% for i in pictures %}
-	<form action="" method="post" enctype="multipart/form-data">
-		<input name="op" type="hidden" value="delete_image"></input>
-		<input name="label" type="hidden" value={{ i['label'] }}></input>
-		<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
-		<img src="data:;base64,{{ i['data'] }}" style="max-width:none; margin: 10px;" height="90"></img>
-		{{ i['label'] }}
-		<input type="submit" value="Delete">
-	</form>
-	<form action="" method="post" enctype="multipart/form-data">
-		<input name="op" type="hidden" value="open_image"></input>
-		<input style="margin: 10px;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
-	</form>
-	
-{% endfor %}
--->
     <!-- Page Content -->
+
     <div class="container">
 
       <h1 class="my-4 text-center text-lg-left">Gallery</h1>
@@ -64,76 +48,70 @@
 
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://www.musicnotes.com/images/productimages/mtd/MN0138883.gif" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://www.musicnotes.com/images/productimages/mtd/MN0053359.gif" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://www.musicnotes.com/images/productimages/mtd/MN0170333.gif" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://i.pinimg.com/736x/f8/04/cb/f804cbff9ca51419934b6665c758b977--alto-sax-sheet-music-free-sheet-music.jpg" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://www.musicnotes.com/images/productimages/mtd/MN0123125.gif" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://thepianoguys.com/wp-content/uploads/2016/08/ThousandYears_sm_web.jpg" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="http://www.musicnotes.com/images/productimages/mtd/MN0169075.gif" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://i.pinimg.com/736x/37/4f/0d/374f0dda959d8dce05370097c7b1e910--cello-music-sheet-music-clarinet.jpg" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://thepianoguys.com/wp-content/uploads/2016/08/LetItGo_sm_web.jpg" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="https://i.pinimg.com/736x/53/6d/1a/536d1a72a592d768c7aebdfadc26a865--music-for-violin-piano-music-sheet.jpg" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="http://www.musicnotes.com/images/productimages/mtd/MN0174070.gif" alt="">
           </a>
         </div>
         <div class="col-lg-3 col-md-4 col-xs-6">
           <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+            <img class="img-fluid img-thumbnail" src="http://www.musicnotes.com/images/productimages/mtd/MN0176301.gif" alt="">
           </a>
         </div>
       </div>
 
-    </div>
+    </div>-->
     <!-- /.container -->
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; AMajorFlip 2017</p>
-      </div>
-      <!-- /.container -->
-    </footer>
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
