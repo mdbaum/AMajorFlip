@@ -32,7 +32,7 @@ def script_route():
 				database.delete_image(username, image_id)
 			elif request.form['op'] == 'open_image':
 				# image_id = request.form['image_id']
-				print 'halo'
+				print ('halo')
 				#print image_id
 		elif request.method == 'GET':
 			pass
