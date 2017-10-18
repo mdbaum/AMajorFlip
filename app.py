@@ -8,6 +8,7 @@ app = Flask(__name__, template_folder='templates')
 # Register the controllers
 app.register_blueprint(controllers.main)
 app.register_blueprint(controllers.script)
+app.register_blueprint(controllers.display)
 
 # Set the secret key
 app.secret_key = 'A0Zr98j/3yX~/KR~XHH!jmN]LWX/,?RT'

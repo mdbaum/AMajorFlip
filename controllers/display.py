@@ -5,10 +5,10 @@ from database import database
 import hashlib, datetime
 from base64 import b64encode
 
-script = Blueprint('script', __name__, template_folder='templates')
+display = Blueprint('display', __name__, template_folder='templates')
 
-@script.route('/script', methods = ['GET', 'POST'])
-def script_route():
+@display.route('/display', methods = ['GET', 'POST'])
+def display_route():
 	options = {}
 	username = 'admin'
 	try:
@@ -37,7 +37,9 @@ def script_route():
 		elif request.method == 'GET':
 			pass
 		options['pictures'] = database.get_images(username)
-		return render_template('script.html', **options)
+		options['picid'] = request.args.get('picid')
+		print options['picid']
+		return render_template('display.html', **options)
 	except Exception as e:
 		return str(e)
 
