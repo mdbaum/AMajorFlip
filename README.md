@@ -4,18 +4,18 @@
 
 ### MongoDB
 
-- To start our project, first install mongodb. Here is a simple tutorial for Mac OS
+- To start A Major Flip, first install mongodb. Below is a simple tutorial for Mac OS
 ```
 brew update
 brew install mongodb
 sudo mkdir -p /data/db
 mongod
 ```
-Then close that terminal. It seems that `mongod` will always run on background.
-Now open another terminal to test if `mongo` command is valid.
+`mongod` will run in the background.
+Open another terminal and test if the `mongo` command is valid.
 
 ### Virtualenv
-- Then install `virtualenv`. Here is the code that works for me. Perhaps `pip2` is already installed on your machine
+- Then install `virtualenv`.
 ```
 sudo brew install python
 ```
@@ -36,18 +36,18 @@ sudo pip install -r requirements.txt
 ```
 
 ## Run our project
-- You can run our project using thie command
+- You can run A Major Flip using this command
 ```
 python app.py
 ```
-And then go to `localhost:3000`. You can see the UI. 
+And then navigate in a browser to `localhost:3000`.
 
 ### Upload sheetmusic
-- You can upload your own sheet music using the upload function. After uploading it, you can see your sheetmusic in the gallery.
+- You can upload your own sheet music using the upload function. After uploading it, your sheetmusic will appear in the gallery.
 
 ### Delete sheetmusic
 - You can easily delete the unused sheetmusic by clicking the delete button next to the sheetmusic.
 
 
-- Inform me if any steps stucks or get errors.
+- Contact mdbaum@umich.edu with any questions 
 
