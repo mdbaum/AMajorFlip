@@ -4,7 +4,8 @@ from flask import *
 from database import database
 import hashlib, datetime
 from base64 import b64encode
-
+import PythonMagick
+import pyPdf
 script = Blueprint('script', __name__, template_folder='templates')
 
 @script.route('/script', methods = ['GET', 'POST'])
@@ -17,6 +18,28 @@ def script_route():
 				raise RuntimeError('Did you click the button?')
 			# if op is add image
 			if request.form['op'] == 'add_image':
+				upload = request.files['file']	
+				filename = upload.filename		
+				upload.save('./'+filename)
+				
+				if filename == '':
+					raise RuntimeError('Empty file is not allowed')
+				sheetid = request.form['label1']
+				
+				pdf_im = pyPdf.PdfFileReader(file(filename,"rb"))
+				npage = pdf_im.getNumPages()
+				print filename
+				for p in range(npage):
+					im = PythonMagick.Image(filename+'[' + str(p) + ']')
+					print 'hahahaha'
+					im.write('file_out-' + str(p)+'.png')
+					image_data = file('file_out-' + str(p)+'.png').read()
+					image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
+					upload.close()
+					database.add_sheetmusic(username, sheetid)
+					database.add_image(username, image_data, sheetid, p, image_id)
+				
+				'''
 				upload = request.files['file']
 				if upload.filename == '':
 					raise RuntimeError('Empty file is not allowed')
@@ -29,6 +52,7 @@ def script_route():
 				print 'here'
 				database.add_sheetmusic(username, sheetid)
 				database.add_image(username, image_data, sheetid, page, image_id)
+			'''
 			elif request.form['op'] == 'delete_image':
 				image_id = request.form['image_id']
 				# Delete the image from the database.
@@ -43,5 +67,5 @@ def script_route():
 		options['pictures'] = database.get_images(username)
 		return render_template('script.html', **options)
 	except Exception as e:
-		return str(e)
+		print str(e)
 
