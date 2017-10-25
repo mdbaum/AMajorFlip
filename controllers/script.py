@@ -6,6 +6,8 @@ import hashlib, datetime
 from base64 import b64encode
 import PythonMagick
 import pyPdf
+import os
+
 script = Blueprint('script', __name__, template_folder='templates')
 
 @script.route('/script', methods = ['GET', 'POST'])
@@ -19,26 +21,23 @@ def script_route():
 			# if op is add image
 			if request.form['op'] == 'add_image':
 				upload = request.files['file']	
-				filename = upload.filename		
+				filename = str(upload.filename		)
 				upload.save('./'+filename)
-				
 				if filename == '':
 					raise RuntimeError('Empty file is not allowed')
 				sheetid = request.form['label1']
-				
+				upload.close()
 				pdf_im = pyPdf.PdfFileReader(file(filename,"rb"))
 				npage = pdf_im.getNumPages()
-				print filename
 				for p in range(npage):
 					im = PythonMagick.Image(filename+'[' + str(p) + ']')
-					print 'hahahaha'
 					im.write('file_out-' + str(p)+'.png')
 					image_data = file('file_out-' + str(p)+'.png').read()
 					image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
-					upload.close()
 					database.add_sheetmusic(username, sheetid)
 					database.add_image(username, image_data, sheetid, p, image_id)
-				
+					os.remove('file_out-' + str(p)+'.png')
+				os.remove(filename)
 				'''
 				upload = request.files['file']
 				if upload.filename == '':
