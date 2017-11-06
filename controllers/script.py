@@ -6,7 +6,6 @@ import hashlib, datetime
 from base64 import b64encode
 #coding:utf-8
 from wand.image import Image
-import pyPdf
 import os
 
 script = Blueprint('script', __name__, template_folder='templates')
