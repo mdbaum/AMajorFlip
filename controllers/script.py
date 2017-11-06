@@ -4,7 +4,8 @@ from flask import *
 from database import database
 import hashlib, datetime
 from base64 import b64encode
-import PythonMagick
+#coding:utf-8
+from wand.image import Image
 import pyPdf
 import os
 
@@ -21,12 +22,31 @@ def script_route():
 			# if op is add image
 			if request.form['op'] == 'add_image':
 				upload = request.files['file']	
-				filename = str(upload.filename		)
+				filename = str(upload.filename)
 				upload.save('./'+filename)
 				if filename == '':
 					raise RuntimeError('Empty file is not allowed')
 				sheetid = request.form['label1']
 				upload.close()
+				image_pdf = Image(filename=filename,resolution=300)
+				image_jpeg = image_pdf.convert('jpg')
+				req_image = []
+				for img in image_jpeg.sequence:
+					img_page = Image(image=img)
+					req_image.append(img_page.make_blob('jpg'))
+				i = 0
+				for img in req_image:
+					ff = open(str(i)+'.jpg','wb')
+					ff.write(img)
+					ff.close()
+					image_data = file(str(i)+'.jpg').read()
+					image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
+					database.add_sheetmusic(username, sheetid)
+					database.add_image(username, image_data, sheetid, i, image_id)
+					os.remove(str(i)+'.jpg')
+					i += 1
+				os.remove(filename)
+				'''
 				pdf_im = pyPdf.PdfFileReader(file(filename,"rb"))
 				npage = pdf_im.getNumPages()
 				for p in range(npage):
@@ -38,6 +58,7 @@ def script_route():
 					database.add_image(username, image_data, sheetid, p, image_id)
 					os.remove('file_out-' + str(p)+'.png')
 				os.remove(filename)
+				'''
 				'''
 				upload = request.files['file']
 				if upload.filename == '':
