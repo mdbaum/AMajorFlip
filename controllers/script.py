@@ -88,4 +88,3 @@ def script_route():
 		return render_template('script.html', **options)
 	except Exception as e:
 		print str(e)
-
