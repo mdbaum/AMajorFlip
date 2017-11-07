@@ -1,5 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+<script>
+$(document).ready(function(){ 
+    var prevpage=$("#prev").attr("href"); 
+    var nextpage=$("#next").attr("href"); 
+    $("body").keydown(function(event){ 
+      if(event.keyCode==37 && prevpage!=undefined) location=prevpage; 
+      if(event.keyCode==39 && nextpage!=undefined) location=nextpage; 
+    }); 
+ });
+</script>
 {% for i in pictures %}
 	{% if i['image_id'] == picid %}
 		<form action="" method="post" enctype="multipart/form-data">
@@ -15,4 +25,10 @@
 	<input name="op" type="hidden" value="open_image"></input>
 	<input type="hidden" value="Open"><a href="{{ url_for('script.script_route') }}">Go Back</a></input>
 </form>
+{% if before %}
+<a href="{{ url_for('display.display_route', picid = before) }}" id="prev">Previous</a>
+{% endif %}
+{% if next %}
+<a href="{{ url_for('display.display_route', picid = next) }}" id="next">Next</a>
+{% endif %}
 {% endblock %}
