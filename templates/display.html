@@ -17,26 +17,26 @@
 
     <!-- Custom styles for this template -->
     <link href="/static/css/full-slider.css" rel="stylesheet">
+</head>
 
 <style>
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-th, td {
-    padding: 5px;
-    text-align: left;
-}
-table#t01 {
-    width: 100%;    
-    background-color: #f1f1c1;
-}
+  table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+  }
+  th, td {
+      padding: 5px;
+      text-align: left;
+  }
+  table#t01 {
+      width: 100%;    
+      background-color: #f1f1c1;
+  }
 
-table#t02 {
-  width: 100%;
-  background-color: #1B2421;
-}
-
+  table#t02 {
+    width: 100%;
+    background-color: #1B2421;
+  }
 </style>
 
 <script>
@@ -50,32 +50,35 @@ $(document).ready(function(){
  });
 </script>
 
+<body>
+
+<!-- Nav Bar --> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/">A Major Flip</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+  <div class="container">
+    <a class="navbar-brand" href="/">A Major Flip</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
                 <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('script.script_route') }}">Upload</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-        </div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('script.script_route') }}">Upload</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+  </div>
+</nav>
 
 {% for i in pictures %}
 	{% if i['image_id'] == picid %}
@@ -98,6 +101,7 @@ $(document).ready(function(){
 {% if next %}
 <a href="{{ url_for('display.display_route', picid = next) }}" id="next">Next</a>
 {% endif %}
+
 </body>
 
 </html>

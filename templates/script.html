@@ -18,6 +18,8 @@
     <!-- Custom styles for this template -->
     <link href="/static/css/full-slider.css" rel="stylesheet">
 
+</head>
+
 <style>
 table, th, td {
     border: 1px solid black;
@@ -39,100 +41,96 @@ table#t02 {
 
 </style>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<body>
+
+    <!-- Nav Bar --> 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="/">A Major Flip</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('script.script_route') }}">Upload</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-          </ul>
-        </div>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('script.script_route') }}">Upload</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Gallery</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+          </div>
       </div>
     </nav>
 
 
-
-	<form action="" method="post" enctype="multipart/form-data">
-		<div style= "margin: 0px 0px 0px 80px;">
-			<input name="op" type="hidden" value="add_image"></input>
-			<input id="file_input" type="file" name="file" size="60">
-			<br>
-			<p style="margin: 10px 0px;">Upload your sheet music!</p>
-			<label>Sheet Music Label: </label>
-		<input name="label1" class="form-control" placeholder="Ninth Symphony" style= "margin: 10px 10px 10px 0px;">
-		<br>
-		<input id="file_submit" type="submit" value="Add">
-		<br>
-	</form>
-  </div>
-
-<div class="container">
-
-  <h1 class="my-4 text-center text-lg-left">Gallery</h1>
-
-
-        
-  {% for s in sheetmusics %}
-  <p><h2 class="my-4 text-center text-lg-left">{{ s['name']}}</h2></p>
-  <div class="row text-center text-lg-left">
-  	{% for i in pictures %}
-  		{% if i['sheetmusic']==s['name'] %}
-      <div class="col-lg-3 col-md-4 col-xs-6">
-  			<form action="" method="post" enctype="multipart/form-data">
-  				<input name="op" type="hidden" value="delete_image"></input>
-  				<input name="label" type="hidden" value={{ i['label'] }}></input>
-  				<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
-  				<img class="img-fluid img-thumbnail" src="data:;base64,{{ i['data'] }}" style="max-width:200px; margin: 0px;" height="90"></img>
-  				{{ i['label'] }}
-  				<input type="submit" value="Delete" style="margin: 10px 0px">
-  			</form>
-  			<form action="" method="post" enctype="multipart/form-data">
-  				<input name="op" type="hidden" value="open_image"></input>
-  				<input style="margin: 10px; display: inline-block;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
-  			</form>
+    <!-- Page Content --> 
+    <form action="" method="post" enctype="multipart/form-data">
+    	<div style= "margin: 0px 0px 0px 80px;">
+    		<input name="op" type="hidden" value="add_image"></input>
+    		<input id="file_input" type="file" name="file" size="60">
+    		<br>
+    		<p style="margin: 10px 0px;">Upload your sheet music!</p>
+    		<label>Sheet Music Label: </label>
+        <input name="label1" class="form-control" placeholder="Ninth Symphony" style= "margin: 10px 10px 10px 0px;">
+    		<br>
+    		<input id="file_submit" type="submit" value="Add">
+    		<br>
       </div>
-  		{% endif %}
-  	{% endfor %}
+    </form>
+
+    <div class="container">
+
+      <h1 class="my-4 text-center text-lg-left">Gallery</h1>
+
+      {% for s in sheetmusics %}
+      <p><h2 class="my-4 text-center text-lg-left">{{ s['name']}}</h2></p>
+      <div class="row text-center text-lg-left">
+      	{% for i in pictures %}
+      		{% if i['sheetmusic']==s['name'] %}
+          <div class="col-lg-3 col-md-4 col-xs-6">
+      			<form action="" method="post" enctype="multipart/form-data">
+      				<input name="op" type="hidden" value="delete_image"></input>
+      				<input name="label" type="hidden" value={{ i['label'] }}></input>
+      				<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
+      				<img class="img-fluid img-thumbnail" src="data:;base64,{{ i['data'] }}" style="max-width:200px; margin: 0px;" height="90"></img>
+      				{{ i['label'] }}
+      				<input type="submit" value="Delete" style="margin: 10px 0px">
+      			</form>
+      			<form action="" method="post" enctype="multipart/form-data">
+      				<input name="op" type="hidden" value="open_image"></input>
+      				<input style="margin: 10px; display: inline-block;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
+      			</form>
+          </div>
+      		{% endif %}
+      	{% endfor %}
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
-  </div>
 
 
-    <!-- Page Content -->
-    <!-- /.container -->
-
-
-
+    <!-- Footer -->
+    <footer class="py-5 bg-dark" style="position:relative !important; width:100%;">
+          <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; A Major Flip 2017</p>
+            <p class="m-0 text-center text-white">Created by Zhexuan Chen, Jiacheng Li, Jon Vredenburg, and Mary Douglass Baum</p>
+            <p class="m-0 text-center text-white">EECS 498-010 – F17</p>
+          </div>
+    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-<footer class="py-5 bg-dark" style="position:relative !important; width:100%;">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; A Major Flip 2017</p>
-        <p class="m-0 text-center text-white">Created by Zhexuan Chen, Jiacheng Li, Jon Vredenburg, and Mary Douglass Baum</p>
-        <p class="m-0 text-center text-white">EECS 498-010 – F17</p>
-      </div>
-</footer>
-      <!-- /.container -->
-
-
+  </body>
+</html>
 
