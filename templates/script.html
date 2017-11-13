@@ -19,10 +19,9 @@
     <div class="container">
 
       <h1 class="my-4 text-center text-lg-left">Gallery</h1>
-
+      <div class="row text-center text-lg-left">
       {% for s in sheetmusics %}
       <p><h2 class="my-4 text-center text-lg-left">{{ s['name']}}</h2></p>
-      <div class="row text-center text-lg-left">
       	{% for i in pictures %}
       		{% if i['sheetmusic']==s['name'] %}
             {% if i['page'] == 0 %}
@@ -43,8 +42,8 @@
             {% endif %}
       		{% endif %}
       	{% endfor %}
-        </div>
       {% endfor %}
+      </div>
     </div>
 
 
