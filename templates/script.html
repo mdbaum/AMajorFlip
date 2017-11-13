@@ -16,9 +16,37 @@
       </div>
     </form>
 
-     <br><br><br><br> 
-     <br><br><br><br> 
-     <br><br><br><br>
+
+    <div class="container">
+
+      <h1 class="my-4 text-center text-lg-left">Gallery</h1>
+
+      {% for s in sheetmusics %}
+      <p><h2 class="my-4 text-center text-lg-left">{{ s['name']}}</h2></p>
+      <div class="row text-center text-lg-left">
+      	{% for i in pictures %}
+      		{% if i['sheetmusic']==s['name'] %}
+            {% if i['page'] == 0 %}
+            <div class="col-lg-3 col-md-4 col-xs-6">
+        			<form action="" method="post" enctype="multipart/form-data">
+        				<input name="op" type="hidden" value="delete_image"></input>
+        				<input name="label" type="hidden" value={{ i['label'] }}></input>
+        				<input name="sheetmusic" type="hidden" value={{ i['sheetmusic'] }}></input>
+        				<img class="img-fluid img-thumbnail" src="data:;base64,{{ i['data'] }}" style="max-width:200px; margin: 0px;" height="90"></img>
+        				{{ i['label'] }}
+        				<input type="submit" value="Delete" style="margin: 10px 0px">
+        			</form>
+        			<form action="" method="post" enctype="multipart/form-data">
+        				<input name="op" type="hidden" value="open_image"></input>
+        				<input style="margin: 10px; display: inline-block;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
+        			</form>
+            </div>
+            {% endif %}
+      		{% endif %}
+      	{% endfor %}
+        </div>
+      {% endfor %}
+    </div>
 
 
     <!-- Bootstrap core JavaScript -->

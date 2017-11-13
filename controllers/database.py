@@ -42,7 +42,8 @@ class Database(object):
 		return [image for image in self.get_image_collection(username).find({}, { '_id': 0 })]
 
 	# Deletes the specified image.
-	def delete_image(self, username, image_id):
-		self.get_image_collection(username).remove({'image_id': image_id})
+	def delete_image(self, username, sheetmusic):
+		self.get_image_collection(username).remove({'sheetmusic': sheetmusic})
+		self.get_sheetmusic_collection(username).remove({'name':sheetmusic})
 
 database = Database()
