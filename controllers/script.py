@@ -27,6 +27,8 @@ def script_route():
 					raise RuntimeError('Empty file is not allowed')
 				sheetid = request.form['label1']
 				upload.close()
+				if database.check_sheetmusic(username, sheetid)>0:
+					raise RuntimeError('Duplicate sheetmusic uploaded')				
 				image_pdf = Image(filename=filename,resolution=300)
 				image_jpeg = image_pdf.convert('jpg')
 				req_image = []
@@ -34,44 +36,17 @@ def script_route():
 					img_page = Image(image=img)
 					req_image.append(img_page.make_blob('jpg'))
 				i = 0
+				database.add_sheetmusic(username, sheetid)
 				for img in req_image:
 					ff = open(str(i)+'.jpg','wb')
 					ff.write(img)
 					ff.close()
 					image_data = file(str(i)+'.jpg').read()
 					image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
-					database.add_sheetmusic(username, sheetid)
 					database.add_image(username, image_data, sheetid, i, image_id)
 					os.remove(str(i)+'.jpg')
 					i += 1
 				os.remove(filename)
-				'''
-				pdf_im = pyPdf.PdfFileReader(file(filename,"rb"))
-				npage = pdf_im.getNumPages()
-				for p in range(npage):
-					im = PythonMagick.Image(filename+'[' + str(p) + ']')
-					im.write('file_out-' + str(p)+'.png')
-					image_data = file('file_out-' + str(p)+'.png').read()
-					image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
-					database.add_sheetmusic(username, sheetid)
-					database.add_image(username, image_data, sheetid, p, image_id)
-					os.remove('file_out-' + str(p)+'.png')
-				os.remove(filename)
-				'''
-				'''
-				upload = request.files['file']
-				if upload.filename == '':
-					raise RuntimeError('Empty file is not allowed')
-				sheetid = request.form['label1']
-				page = request.form['label2']
-				check_image_extension(upload)
-				image_data = upload.read()
-				image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
-				upload.close()
-				print 'here'
-				database.add_sheetmusic(username, sheetid)
-				database.add_image(username, image_data, sheetid, page, image_id)
-			'''
 			elif request.form['op'] == 'delete_image':
 				image_id = request.form['image_id']
 				# Delete the image from the database.
@@ -87,3 +62,6 @@ def script_route():
 		return render_template('script.html', **options)
 	except Exception as e:
 		print str(e)
+		options['sheetmusics'] = database.get_sheetmusics(username);
+		options['pictures'] = database.get_images(username)
+		return render_template('script.html', **options)
