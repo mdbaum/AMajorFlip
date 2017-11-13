@@ -1,11 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
 <div style="margin: 10px 80px; height: 100%;">
-	  <br><br><br><br>
-<a href="{{ url_for('script.script_route') }}">Upload Music</a>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
+
+	<a href="{{ url_for('script.script_route') }}">Upload Music</a>
+	<br><br>
+	<div class="container">
+
+      <h1 class="my-4 text-center text-lg-left" style="margin: 10px -20px !important">Gallery</h1>
+
+      {% for s in sheetmusics %}
+      <p><h2 class="my-4 text-center text-lg-left">{{ s['name']}}</h2></p>
+      <div class="row text-center text-lg-left">
+      	{% for i in pictures %}
+      		{% if i['sheetmusic']==s['name'] %}
+            	{% if i['page'] == 0 %}
+		            <div class="col-lg-3 col-md-4 col-xs-6">
+		        			<form action="" method="post" enctype="multipart/form-data">
+		        				<input name="op" type="hidden" value="delete_image"></input>
+		        				<input name="label" type="hidden" value={{ i['label'] }}></input>
+		        				<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
+		        				<img class="img-fluid img-thumbnail" src="data:;base64,{{ i['data'] }}" style="max-width:200px; margin: 0px;" height="90"></img>
+		        				{{ i['label'] }}
+		        				<input type="submit" value="Delete" style="margin: 10px 0px">
+		        			</form>
+		        			<form action="" method="post" enctype="multipart/form-data">
+		        				<input name="op" type="hidden" value="open_image"></input>
+		        				<input style="margin: 10px; display: inline-block;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
+		        			</form>
+		            </div>
+            	{% endif %}
+      		{% endif %}
+      	{% endfor %}
+        </div>
+      {% endfor %}
+    </div>
 </div>
 {% endblock %}
