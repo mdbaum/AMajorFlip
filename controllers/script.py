@@ -48,9 +48,9 @@ def script_route():
 					i += 1
 				os.remove(filename)
 			elif request.form['op'] == 'delete_image':
-				image_id = request.form['image_id']
+				sheetmusic = request.form['sheetmusic']
 				# Delete the image from the database.
-				database.delete_image(username, image_id)
+				database.delete_image(username, sheetmusic)
 			elif request.form['op'] == 'open_image':
 				# image_id = request.form['image_id']
 				print ('halo')

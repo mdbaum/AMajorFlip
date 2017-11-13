@@ -16,13 +16,13 @@
       </div>
     </form>
 
+
     <div class="container">
 
       <h1 class="my-4 text-center text-lg-left">Gallery</h1>
-
+      <div class="row text-center text-lg-left">
       {% for s in sheetmusics %}
       <p><h2 class="my-4 text-center text-lg-left">{{ s['name']}}</h2></p>
-      <div class="row text-center text-lg-left">
       	{% for i in pictures %}
       		{% if i['sheetmusic']==s['name'] %}
             {% if i['page'] == 0 %}
@@ -30,7 +30,7 @@
         			<form action="" method="post" enctype="multipart/form-data">
         				<input name="op" type="hidden" value="delete_image"></input>
         				<input name="label" type="hidden" value={{ i['label'] }}></input>
-        				<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
+        				<input name="sheetmusic" type="hidden" value={{ i['sheetmusic'] }}></input>
         				<img class="img-fluid img-thumbnail" src="data:;base64,{{ i['data'] }}" style="max-width:200px; margin: 0px;" height="90"></img>
         				{{ i['label'] }}
         				<input type="submit" value="Delete" style="margin: 10px 0px">
@@ -43,8 +43,8 @@
             {% endif %}
       		{% endif %}
       	{% endfor %}
-        </div>
       {% endfor %}
+      </div>
     </div>
 
 
