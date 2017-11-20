@@ -34,6 +34,12 @@ After activation, install requirements.
 ```
 sudo pip install -r requirements.txt
 ```
+### ImageMagick
+- For ubuntu users: 
+```
+sudo apt-get install imagemagick
+```
+
 
 ## Run our project
 - You can run A Major Flip using this command
