@@ -1,5 +1,4 @@
 from config import *
-from utility import check_image_extension
 from flask import *
 from database import database
 import hashlib, datetime

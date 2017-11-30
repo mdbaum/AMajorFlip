@@ -34,6 +34,18 @@ After activation, install requirements.
 ```
 sudo pip install -r requirements.txt
 ```
+### ImageMagick
+- For ubuntu users: 
+```
+sudo apt-get install imagemagick
+```
+- For Mac users, it might be a little weird because imagemagick 7 seems not well supported, so we change to imagemagick@6: 
+```
+brew update && brew install imagemagick
+brew install imagemagick@6
+export MAGICK_HOME=/usr/local/opt/imagemagick@6
+```
+See https://stackoverflow.com/questions/7053996/how-do-i-install-imagemagick-with-homebrew for detail.
 
 ## Run our project
 - You can run A Major Flip using this command
