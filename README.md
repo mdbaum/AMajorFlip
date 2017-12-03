@@ -30,6 +30,8 @@ Then active `virtualenv`
 ```
 . venv/bin/activate
 ```
+Alternatively, if you are running Python 3 as your default Python version, you can use a virtual environment as a temporary install of Python 2. Full details can be found at https://stackoverflow.com/questions/7237415/python-2-instead-of-python-3-as-the-temporary-default-python
+
 After activation, install requirements.
 ```
 sudo pip install -r requirements.txt
