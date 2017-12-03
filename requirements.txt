@@ -1,3 +1,4 @@
 pymongo==3.5.1
 flask==0.12.2
 werkzeug==0.12.2
+wand==0.4.4
