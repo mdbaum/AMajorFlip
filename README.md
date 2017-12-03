@@ -56,11 +56,20 @@ sudo apt-get build-dep python-imaging
 sudo apt-get install libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
 sudo pip install Pillow
 ```
+- For mac users:
+```
+sudo pip install Pillow
+```
+
 
 ### numpy
 - For ubuntu users: 
 ```
 sudo apt-get install python-numpy
+```
+- For mac users:
+```
+sudo brew install numpy
 ```
 
 ## Run our project
