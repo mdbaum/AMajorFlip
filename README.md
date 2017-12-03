@@ -49,6 +49,20 @@ export MAGICK_HOME=/usr/local/opt/imagemagick@6
 ```
 See https://stackoverflow.com/questions/7053996/how-do-i-install-imagemagick-with-homebrew for detail.
 
+### PIL
+- For ubuntu users: 
+```
+sudo apt-get build-dep python-imaging
+sudo apt-get install libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+sudo pip install Pillow
+```
+
+### numpy
+- For ubuntu users: 
+```
+sudo apt-get install python-numpy
+```
+
 ## Run our project
 - You can run A Major Flip using this command
 ```
