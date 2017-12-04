@@ -35,6 +35,8 @@ def analyzeSheetMusic(src):
     h,w = matrix.shape
     whiteSum = 0
     ratio=[0]
+    print("size")
+    print (matrix.size)
     for i in range(h):
         for j in range(w):
             if(matrix[i,j]>200):
