@@ -39,15 +39,23 @@ def analyzeSheetMusic(src):
         for j in range(w):
             if(matrix[i,j]>200):
                 whiteSum+=1
-        if (whiteSum==w):
+        if (whiteSum>w*0.9):
             ratioFound = (i+0.0)/h
-            if(ratioFound<0.1):
+            if(ratioFound<0.2 or ratioFound>0.8):
                 continue
             if(ratioFound<ratio[len(ratio)-1]+0.1):
                 continue
             ratio.append(ratioFound)
         whiteSum=0
     ratio.append(1)
+    if (len(ratio)>4):
+        newratio = []
+	i = 0
+	while(i<len(ratio)):
+	    newratio.append(ratio[i])
+	    i = i +2
+        newratio.append(1)
+        return newratio
     return ratio
 
 
@@ -78,12 +86,18 @@ def script_route():
 				for img in image_jpeg.sequence:
 					img_page = Image(image=img)
 					req_image.append(img_page.make_blob('png'))
-				i = 0
+				i = 1
 				database.add_sheetmusic(username, sheetid)
+				isCoverPage = 1
 				for img in req_image:
 					ff = open(str(i)+'.png','wb')
 					ff.write(img)
 					ff.close()
+					image_data = file(str(i) + '.png').read()
+					image_id = hashlib.md5(username+str(datetime.datetime.now())).hexdigest()
+					if(isCoverPage==1):
+						database.add_image(username, image_data, sheetid, 0, image_id);
+						isCoverPage = 0;
 					src = str(i)+'.png'
 					rowlist = analyzeSheetMusic(src)
 				        splitimage(src, rowlist, '')
