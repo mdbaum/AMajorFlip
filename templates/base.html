@@ -6,16 +6,17 @@
 
     <!--Define meta element-->
   	<meta charset="UTF-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/full-slider.css" rel="stylesheet">
     
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
-    <!-- Custom styles for this template -->
-    <link href="/static/css/full-slider.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -29,16 +30,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home
-                  <span class="sr-only">(current)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('gallery.gallery_route') }}">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('script.script_route') }}">Upload</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Gallery</a>
+              <a class="nav-link" href="{{ url_for('upload.upload_route') }}">Upload</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('about.about_route') }}">About</a>
@@ -49,17 +45,13 @@
   </nav>
   
   <!-- Page content --> 
-  <div>
+  <div class="block_content">
   <br><br><br><br>
      {% block content %}{% endblock %}
   </div>
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark" style="position:relative; width:100%; bottom: 0">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; A Major Flip 2017</p>
-    </div>
-  </footer>
+<div class="custom_footer">Copyright &copy; <strong>A Major Flip</strong> 2017</div>
 </body>
 
 </html>

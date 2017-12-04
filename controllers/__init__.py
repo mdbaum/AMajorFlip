@@ -1,5 +1,6 @@
 from .main import *
-from .script import *
+from .upload import *
 from .display import *
 from .database import *
 from .about import *
+from .gallery import *

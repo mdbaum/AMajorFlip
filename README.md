@@ -30,6 +30,8 @@ Then active `virtualenv`
 ```
 . venv/bin/activate
 ```
+Alternatively, if you are running Python 3 as your default Python version, you can use a virtual environment as a temporary install of Python 2. Full details can be found at https://stackoverflow.com/questions/7237415/python-2-instead-of-python-3-as-the-temporary-default-python
+
 After activation, install requirements.
 ```
 sudo pip install -r requirements.txt
@@ -46,6 +48,29 @@ brew install imagemagick@6
 export MAGICK_HOME=/usr/local/opt/imagemagick@6
 ```
 See https://stackoverflow.com/questions/7053996/how-do-i-install-imagemagick-with-homebrew for detail.
+
+### PIL
+- For ubuntu users: 
+```
+sudo apt-get build-dep python-imaging
+sudo apt-get install libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+sudo pip install Pillow
+```
+- For mac users:
+```
+sudo pip install Pillow
+```
+
+
+### numpy
+- For ubuntu users: 
+```
+sudo apt-get install python-numpy
+```
+- For mac users:
+```
+sudo brew install numpy
+```
 
 ## Run our project
 - You can run A Major Flip using this command
