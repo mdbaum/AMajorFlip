@@ -2,8 +2,6 @@
 {% block content %}
 <div style="margin: 10px 80px; height: 100%;">
 
-	<a href="{{ url_for('script.script_route') }}">Upload Music</a>
-	<br><br>
 	<div class="container">
 
       <h1 class="my-4 text-center text-lg-left">Gallery</h1>
@@ -32,6 +30,11 @@
       	{% endfor %}
       {% endfor %}
       </div>
+      	<br><br><br>
+      	<div class="upload_link">
+    	 <a href="{{ url_for('upload.upload_route') }}">Upload More Music</a>
+     	</div>
+     	<br><br><br>
     </div>
 </div>
 {% endblock %}

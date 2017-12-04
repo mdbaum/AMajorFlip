@@ -51,10 +51,10 @@ def analyzeSheetMusic(src):
     return ratio
 
 
-script = Blueprint('script', __name__, template_folder='templates')
+upload = Blueprint('upload', __name__, template_folder='templates')
 
-@script.route('/script', methods = ['GET', 'POST'])
-def script_route():
+@upload.route('/upload', methods = ['GET', 'POST'])
+def upload_route():
 	options = {}
 	username = 'admin'
 	try:
@@ -86,7 +86,7 @@ def script_route():
 					ff.close()
 					src = str(i)+'.png'
 					rowlist = analyzeSheetMusic(src)
-				        splitimage(src, rowlist, '')
+					splitimage(src, rowlist, '')
 					j = 0
 					for imgi in range(len(rowlist)-1):
 						image_data = file(str(i) + '_' + str(imgi) + '.png').read()
@@ -109,9 +109,9 @@ def script_route():
 			pass
 		options['sheetmusics'] = database.get_sheetmusics(username);
 		options['pictures'] = database.get_images(username)
-		return render_template('script.html', **options)
+		return render_template('upload.html', **options)
 	except Exception as e:
 		print str(e)
 		options['sheetmusics'] = database.get_sheetmusics(username);
 		options['pictures'] = database.get_images(username)
-		return render_template('script.html', **options)
+		return render_template('upload.html', **options)

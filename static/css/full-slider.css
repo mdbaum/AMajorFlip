@@ -13,3 +13,25 @@
   -o-background-size: 400px 500px;
   background-size: 400px 500px;
 }
+
+.custom_footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: white;
+  background-color: #343a40;
+  text-align: center;
+}
+
+.block_content {
+  height: 100vh;
+  overflow: scroll;
+  background-color: #efefef;
+}
+
+.upload_link {
+	font-size: 22px;
+	text-align: center;
+}

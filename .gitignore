@@ -1,2 +1,7 @@
 *.pyc
 venv
+env/
+*.pdf
+temp-python/*
+templates/vendor/*
+

@@ -25,7 +25,7 @@ $(document).ready(function(){
 {% endfor %}
 <form action="" method="post" enctype="multipart/form-data">
 	<input name="op" type="hidden" value="open_image"></input>
-	<input type="hidden" value="Open"><a href="{{ url_for('script.script_route') }}">Go Back</a></input>
+	<input type="hidden" value="Open"><a href="{{ url_for('upload.upload_route') }}">Go Back</a></input>
 </form>
 {% if before %}
 <a href="{{ url_for('display.display_route', picid = before) }}" id="prev">Previous</a>

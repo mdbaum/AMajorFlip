@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+    <!-- Nav Bar --> 
+{% block content %}
+    <!-- Page Content --> 
+    <form action="" method="post" enctype="multipart/form-data">
+    	<div style= "margin: 0px 0px 0px 80px;">
+    		<input name="op" type="hidden" value="add_image"></input>
+    		<input id="file_input" type="file" name="file" size="60">
+    		<br>
+    		<p style="margin: 10px 0px;">Upload your sheet music!</p>
+    		<label>Sheet Music Label: </label>
+        <input name="label1" class="form-control" placeholder="Ninth Symphony" style= "margin: 10px 10px 10px 0px;">
+    		<br>
+    		<input id="file_submit" type="submit" value="Add">
+    		<br>
+      </div>
+    </form>
+{% endblock %}
+
