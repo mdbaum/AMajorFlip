@@ -4,6 +4,9 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-full-slider/blob/master/LICENSE)
  */
 
+.inside_container {
+font-size: 22px;
+}
 .carousel-item {
   height: 100vh;
   min-height: 300px;
@@ -34,4 +37,9 @@
 .upload_link {
 	font-size: 22px;
 	text-align: center;
+}
+
+.main_upload_link {
+	font-size: 22px;
+	text-align: left;
 }

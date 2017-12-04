@@ -18,14 +18,14 @@ $(document).ready(function(){
 			<input name="op" type="hidden" value="display_image"></input>
 			<input name="label" type="hidden" value={{ i['label'] }}></input>
 			<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
-			<div align="center"><img src="data:;base64,{{ i['data'] }}" style="width:40% !important;height:auto; !important" max-height="400" align = "middle"></img></div>
+			<div align="center"><img src="data:;base64,{{ i['data'] }}" style="width:80% !important;height:auto; !important" max-height="400" align = "middle"></img></div>
 			{{ i['label'] }}
 		</form>
 	{% endif %}
 {% endfor %}
 <form action="" method="post" enctype="multipart/form-data">
 	<input name="op" type="hidden" value="open_image"></input>
-	<input type="hidden" value="Open"><a href="{{ url_for('upload.upload_route') }}">Go Back</a></input>
+	<input type="hidden" value="Open"><a href="{{ url_for('gallery.gallery_route') }}">Return to Gallery</a></input>
 </form>
 {% if before %}
 <a href="{{ url_for('display.display_route', picid = before) }}" id="prev">Previous</a>
