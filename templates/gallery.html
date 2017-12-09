@@ -21,6 +21,8 @@
         				{{ i['label'] }}
                 <input type="submit" value="Delete" style="margin: 10px 0px">
         			</form>
+            {% endif %}
+            {% if i['page'] == 1 %}
         			<form action="" method="post" enctype="multipart/form-data">
         				<input name="op" type="hidden" value="open_image"></input>
         				<input style="margin: 10px; display: inline-block;" type="hidden" value="Open"><a href="{{ url_for('display.display_route', picid = i['image_id']) }}">Open</a></input>
