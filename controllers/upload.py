@@ -41,7 +41,7 @@ def analyzeSheetMusic(src):
         for j in range(w):
             if(matrix[i,j]>200):
                 whiteSum+=1
-        if (whiteSum>w*0.9):
+        if (whiteSum==w):
             ratioFound = (i+0.0)/h
             if(ratioFound<0.2 or ratioFound>0.8):
                 continue
