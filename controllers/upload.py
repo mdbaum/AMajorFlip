@@ -29,19 +29,18 @@ def splitimage(src, rowrate, dstpath):
             num = num + 1
 
 def analyzeSheetMusic(src):
+    print 'testtest\n\n\ntesttetsts'
     img = PILImage.open(src)
     grayImg = img.convert('L')
     matrix = numpy.asarray(grayImg)
     h,w = matrix.shape
     whiteSum = 0
     ratio=[0]
-    print("size")
-    print (matrix.size)
     for i in range(h):
         for j in range(w):
             if(matrix[i,j]>200):
                 whiteSum+=1
-        if (whiteSum>w*0.9):
+        if (whiteSum==w):
             ratioFound = (i+0.0)/h
             if(ratioFound<0.2 or ratioFound>0.8):
                 continue
@@ -49,7 +48,14 @@ def analyzeSheetMusic(src):
                 continue
             ratio.append(ratioFound)
         whiteSum=0
-    ratio.append(1)
+    newratio = []
+    i = 0
+    while(i<len(ratio)):
+	newratio.append(ratio[i])
+	i = i +2
+    newratio.append(1)
+    return newratio
+    '''
     if (len(ratio)>4):
         newratio = []
 	i = 0
@@ -58,8 +64,8 @@ def analyzeSheetMusic(src):
 	    i = i +2
         newratio.append(1)
         return newratio
-    return ratio
-
+    '''
+   # return ratio
 
 upload = Blueprint('upload', __name__, template_folder='templates')
 
