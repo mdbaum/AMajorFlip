@@ -28,7 +28,7 @@ def display_route():
 		totalpage = len(newlist)
 		for i in range(totalpage):
 			if newlist[i]['image_id'] == cur_picid:
-				if newlist[i]['page'] != 0:
+				if newlist[i]['page'] > 1:
 					options['before'] = newlist[i-1]['image_id']
 				if newlist[i]['page'] != totalpage-1:
 					options['next'] = newlist[i+1]['image_id']
