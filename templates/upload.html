@@ -2,6 +2,12 @@
     <!-- Nav Bar --> 
 {% block content %}
     <!-- Page Content --> 
+    <script type="text/javascript">
+        function loading(){
+            console.log("haha")
+            $("#content").append("<div class=\"loader\"></div>")        
+        }
+    </script>
     <form action="" method="post" enctype="multipart/form-data">
     	<div style= "margin: 0px 0px 0px 80px;">
     		<input name="op" type="hidden" value="add_image"></input>
@@ -11,9 +17,10 @@
     		<label>Sheet Music Label: </label>
         <input name="label1" class="form-control" placeholder="Ninth Symphony" style= "margin: 10px 10px 10px 0px;">
     		<br>
-    		<input id="file_submit" type="submit" value="Add">
+    		<input id="file_submit" type="submit" value="Add" onclick="loading()">
     		<br>
       </div>
     </form>
+    <div id = "content" align="center"></div>
 {% endblock %}
 
