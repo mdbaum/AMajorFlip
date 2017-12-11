@@ -18,20 +18,23 @@ $(document).ready(function(){
 			<input name="op" type="hidden" value="display_image"></input>
 			<input name="label" type="hidden" value={{ i['label'] }}></input>
 			<input name="image_id" type="hidden" value={{ i['image_id'] }}></input>
-			<div align="center"><img src="data:;base64,{{ i['data'] }}" style="width:95% !important;height:auto; !important" max-height="400" align = "middle"></img></div>
+			<div align="center" display="inline-block">
+			{% if before %}
+				<a class="btn" style="margin: 3px; background-color: #C8C8C8; color: #42464c; border: 1px solid #989898" href="{{ url_for('display.display_route', picid = before) }}" id="prev">Previous</a>
+			{% endif %}
+			<img src="data:;base64,{{ i['data'] }}" style="width:82% !important;height:auto; !important" max-height="400" align = "middle"></img>
+			{% if next %}
+				<a class="btn" style="margin: 3px; background-color: #C8C8C8; color: #42464c; border: 1px solid #989898" href="{{ url_for('display.display_route', picid = next) }}" id="next">Next</a>
+			{% endif %}
+			</div>
 			{{ i['label'] }}
 		</form>
 	{% endif %}
 {% endfor %}
+
 <form action="" method="post" enctype="multipart/form-data">
 	<input name="op" type="hidden" value="open_image"></input>
-	<input type="hidden" value="Open"><a href="{{ url_for('gallery.gallery_route') }}">Return to Gallery</a></input>
+	<input type="hidden" value="Open"><a class="btn" style="margin: 5px 0px 0px 27px; background-color: #C8C8C8; color: #42464c; border: 1px solid #989898" href="{{ url_for('gallery.gallery_route') }}">Return to Gallery</a></input>
 </form>
-{% if before %}
-<a href="{{ url_for('display.display_route', picid = before) }}" id="prev">Previous</a>
-{% endif %}
-{% if next %}
-<a href="{{ url_for('display.display_route', picid = next) }}" id="next">Next</a>
-{% endif %}
 
 {% endblock %}
